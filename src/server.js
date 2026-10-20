@@ -5,14 +5,14 @@ import 'dotenv/config';
 import cors from 'cors';
 import { connectMongoDB } from './db/connectMongoDB.js';
 
-import { Notes } from './models/note.js';
+import { Note } from './models/note.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import notesRouters from './routes/notesRoutes.js';
 
 const app = express();
-const PORT = process.env.PORT ?? 3030;
+const PORT = process.env.PORT ?? 3000;
 
 /* Middleware та маршрути */
 
