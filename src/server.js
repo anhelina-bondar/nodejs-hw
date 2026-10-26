@@ -24,8 +24,8 @@ app.use(logger);
 
 ////
 app.use(notesRouters);
+app.use(errors());
 app.use(notFoundHandler);
-app.use(errors);
 app.use(errorHandler);
 
 // підключення до MongoDB
