@@ -4,18 +4,16 @@ import createHttpError from 'http-errors';
 export const getAllNotes = async (req, res) => {
   const { tag, search, page = 1, perPage = 10 } = req.query;
   const filter = {};
+
   if (tag !== undefined) {
     filter.tag = tag;
   }
-  const notesQuery = Note.find(filter);
 
   if (search !== undefined && search !== '') {
-    notesQuery.where({
-      $or: [
-        { title: { $regex: search, $options: 'i' } },
-        { content: { $regex: search, $options: 'i' } },
-      ],
-    });
+    filter.$or = [
+      { title: { $regex: search, $options: 'i' } },
+      { content: { $regex: search, $options: 'i' } },
+    ];
   }
 
   const skip = (page - 1) * perPage;
