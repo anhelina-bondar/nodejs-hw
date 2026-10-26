@@ -13,7 +13,7 @@ export const getAllNotesSchema = {
 export const createNoteSchema = {
   [Segments.BODY]: Joi.object({
     title: Joi.string().min(1).required(),
-    content: Joi.string().allow(''),
+    content: Joi.string().optional().allow(''),
     tag: Joi.string().valid(...TAGS),
   }),
 };
@@ -21,7 +21,7 @@ const validateObjectId = (value, helpers) => {
   if (isValidObjectId(value)) {
     return value;
   } else {
-    return helpers.message('Invalid ID');
+    return helpers.message('Invalid MongoDB ObjectId');
   }
 };
 export const noteIdSchema = {
