@@ -39,10 +39,10 @@ export const loginUser = async (req, res) => {
     throw createHttpError(401, 'Invalid credentials');
   }
 
-  await Session.deleteOne({ UserId: existingUser._id });
+  await Session.deleteOne({ userId: existingUser._id });
   const newSession = await createSession(existingUser._id);
   setSessionCookies(res, newSession);
-  res.status(201).json(existingUser);
+  res.status(200).json(existingUser);
 };
 
 export const logoutUser = async (req, res) => {
@@ -57,10 +57,6 @@ export const logoutUser = async (req, res) => {
 
   res.status(204).send();
 };
-
-// src/controllers/authController.js
-
-// Решта коду файла
 
 export const refreshUserSession = async (req, res) => {
   const { sessionId, refreshToken } = req.cookies;

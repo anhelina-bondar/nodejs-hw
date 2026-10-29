@@ -22,8 +22,6 @@ const userSchema = new Schema(
   { timestamps: true, versionKey: false },
 );
 
-export const User = model('User', userSchema);
-
 userSchema.methods.toJSON = function () {
   const obj = this.toObject();
   delete obj.password;
@@ -35,3 +33,4 @@ userSchema.pre('save', function () {
     this.username = this.email;
   }
 });
+export const User = model('User', userSchema);
